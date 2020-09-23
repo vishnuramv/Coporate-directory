@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+    <div class="ui grid container">
+        <div class="row">
+            <div class="one wide column">
+            </div>
+            <div class="fourteen wide column">
+                    <form action="{% url 'main:main-post-view'  %}" class="ui form" method="POST">
+                        <div class="ui grid container">
+                            <div class="row">
+                                    {% csrf_token %}
+                                    <div class="four wide column">
+                                        <input type="text" name="name" placeholder="Enter your name" required="" id="id_name">
+                                    </div>
+                                    <div class="four wide column">
+                                        <input type="text" name="email" placeholder="Enter your email address" required="" id="id_email">
+                                    </div>
+                                    <div class="four wide column">
+                                        <input type="text" name="phone" placeholder="Enter your phone number" required="" id="id_phone">
+                                    </div>
+                                    <div class="four wide column">
+                                        <input type="text" name="designation" placeholder="Enter your desination" required="" id="id_designation">
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="ui grid container">
+                            <div class="row">
+                                <div class="seven wide column">
+                                </div>
+                                <div class="four wide column">
+                                    <button type="submit" class="ui positive button" name="submit_e_form">
+                                        Post &nbsp;&nbsp;
+                                        <i class="send icon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                
+                <div class="ui fluid centered card">
+                    <table class="ui celled table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email Id</th>
+                                <th>Phone Number</th>
+                                <th>Designation</th>
+                                <th>Joined at</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in qs %}
+                                <tr>
+                                    <td data-label="Name">{{ obj.name }}</td>
+                                    <td data-label="Email">{{ obj.email }}</td>
+                                    <td data-label="phone">{{ obj.phone }}</td>
+                                    <td data-label="designation">{{ obj.designation }}</td>
+                                    <td data-label="joined">{{ obj.joined_at }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+            <div class="one wide column">
+            </div>
+        </div>  
+    </div>
+
+
+
+
+{% endblock content %}
